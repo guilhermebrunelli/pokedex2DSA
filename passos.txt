@@ -1,0 +1,9 @@
+configuracao do git local
+git config --global user.name guilhermebrunelli
+git config --global user.email gui_brunelli_10@hotmail.com
+
+criar um projeto MVC
+dotnet new mvc -o Pokedex
+
+executar o projeto
+dotnet watch run 
