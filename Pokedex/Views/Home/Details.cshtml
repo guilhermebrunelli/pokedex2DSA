@@ -5,9 +5,9 @@
         string Cor(string nome)
         {
             return tipos
-                where(t => t.Nome == nome)
-                select(t => t.Cor)
-                FirstOrDefault();
+                .Where(t => t.Nome == nome)
+                .Select(t => t.Cor)
+                .FirstOrDefault();
         }
 }
  <section class="pt-5 container">
