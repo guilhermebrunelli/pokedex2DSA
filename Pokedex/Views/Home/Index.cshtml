@@ -16,18 +16,16 @@
         <div class="col mx-auto">
             <h1>Pokédex</h1>
             <div class="group">
-                <button id="btn-all" class="btn btn-md my-2 text-white bg-dark btn-filter">
+                <button id="btn-all" class="btn btn-md my-2 text-white bg-dark btn-filter">                    
                     Ver Todos
                 </button>
-
                 @foreach (var tipo in tipos)
                 {
-                    <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                        style="background-color:@Cor(tipo.Nome)">
+                    <button id="btn-@tipo.Nome" class="btn btn-sm my-2 text-white btn-filter"
+                        style="background-color:@tipo.Cor" onclick="filter('@tipo.Nome')">
                         @tipo.Nome
                     </button>
                 }
-
             </div>
         </div>
     </div>
@@ -40,14 +38,13 @@
             @foreach (var pokemon in Model)
             {
                 <!-- Card Pokemon - Inicio -->
-                <div class="col">
-                    <div class="card shadow-sm cursor-pointer">
-                        <a asp-controller="Home" asp-action="Details">
+                <div class="col" onclick="window.location = '/Home/Details/@pokemon.Numero'">
+                    <div class="card shadow-sm cursor-pointer @string.Join(' ', pokemon.Tipo)">
                         <img src="@pokemon.Imagem" class="card-img-top" width="100%" height="300" alt="@pokemon.Nome"/>
-                        </a>
                         <div class="card-body">
                             <p class="card-text mb-0">Nº @pokemon.Numero.ToString("000")</p>
-                            <h3 class="card-title">@pokemon.Nome</h3>                            
+                            <h3 class="card-title">@pokemon.Nome</h3>
+                            <div class=d-flex justify-content-between align-items-center">                            
                                 <div class="btn-group">
                                     @foreach (var tipo in pokemon.Tipo)
                                     {
@@ -57,6 +54,7 @@
                                 </div>                            
                         </div>
                     </div>
+                </div>
                 </div>
                 <!-- Card Pokemon - Fim -->
             }
